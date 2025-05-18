@@ -1,0 +1,33 @@
+// Переменные Quasar для проекта
+@use './variables' as *;
+
+// Основные цвета
+$primary: $color-dark;
+$secondary: $color-text-secondary;
+$accent: darken($color-text-secondary, 15%);
+
+$dark: $color-dark;
+$dark-page: #121212;
+
+$positive: $color-success;
+$negative: $color-error;
+$info: #31ccec;
+$warning: #f2c037;
+
+// Шрифты
+$typography-font-family: 'RF Dewi Condensed', sans-serif !default;
+$button-font-family: 'RF Dewi Condensed', sans-serif !default;
+$input-font-family: 'RF Dewi Condensed', sans-serif !default;
+
+// Размеры
+$button-border-radius: 36px !default;
+$generic-border-radius: 8px !default;
+
+// Размеры кнопок
+$button-padding: 8px 20px !default;
+$button-dense-padding: 4px 12px !default;
+
+// Тени
+$shadow-1: 0 2px 8px rgba(0, 0, 0, 0.05) !default;
+$shadow-2: 0 4px 12px rgba(0, 0, 0, 0.1) !default;
+$shadow-3: 0 8px 24px rgba(0, 0, 0, 0.12) !default;

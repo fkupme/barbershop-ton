@@ -1,0 +1,44 @@
+/* Шрифты для сайта Force Moscow */
+
+@font-face {
+	font-family: 'RF Dewi Extended';
+	src: url('/fonts/RFDewiExtended-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'RF Dewi Condensed';
+	src: url('/fonts/RFDewiCondensed-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'RF Dewi Condensed';
+	src: url('/fonts/RFDewiCondensed-Thin.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Заменяем Medium и Bold на Regular с модификацией для совместимости */
+@font-face {
+	font-family: 'RF Dewi Condensed';
+	src: url('/fonts/RFDewiCondensed-Regular.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	font-synthesis: weight; /* Позволяет браузеру синтезировать жирный шрифт */
+}
+
+@font-face {
+	font-family: 'RF Dewi Condensed';
+	src: url('/fonts/RFDewiCondensed-Regular.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+	font-synthesis: weight; /* Позволяет браузеру синтезировать жирный шрифт */
+}

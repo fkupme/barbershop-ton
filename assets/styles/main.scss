@@ -1,0 +1,85 @@
+@use './variables' as *;
+@use './fonts' as *;
+@use './mixins' as *;
+
+:root {
+	// Основные цвета
+	--color-dark: #{$color-dark};
+	--color-text-secondary: #{$color-text-secondary};
+	--color-white: #{$color-white};
+	--color-light-gray: #{$color-light-gray};
+
+	// Системные цвета
+	--color-error: #{$color-error};
+	--color-success: #{$color-success};
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'RF Dewi Condensed', sans-serif;
+	background-color: var(--color-white);
+	color: var(--color-dark);
+	line-height: 1.5;
+}
+
+// Кастомные стили кнопок, если используются не q-btn
+.btn {
+	background-color: var(--color-dark);
+	border: none;
+	font-family: 'RF Dewi Extended', sans-serif;
+	font-weight: 700;
+	color: var(--color-white);
+	font-size: 16px;
+	padding: 12px 32px;
+	display: inline-block;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.8);
+		border: 1px solid var(--color-dark);
+		color: var(--color-dark);
+	}
+
+	&--sm {
+		font-size: 14px;
+		padding: 8px 24px;
+	}
+
+	&--outline {
+		background-color: transparent;
+		border: 1px solid var(--color-dark);
+		color: var(--color-dark);
+
+		&:hover {
+			background-color: var(--color-dark);
+			color: var(--color-white);
+		}
+	}
+}
+
+// Кастомизация Quasar
+body.body--light {
+	// CSS переменные Quasar для темы
+	--q-primary: var(--color-dark);
+	--q-secondary: var(--color-text-secondary);
+
+	// Шрифты для компонентов
+	.q-btn {
+		font-family: 'RF Dewi Condensed', sans-serif;
+		font-weight: 600;
+
+		&--no-uppercase {
+			text-transform: none;
+		}
+	}
+
+	.q-field__label {
+		font-family: 'RF Dewi Condensed', sans-serif;
+		font-weight: 500;
+	}
+}

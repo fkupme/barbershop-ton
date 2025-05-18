@@ -1,0 +1,79 @@
+// Стили типографики для сайта Force Moscow
+
+// Миксины для текстовых стилей
+@mixin heading-base {
+	font-family: 'RF Dewi Extended', sans-serif;
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.64);
+}
+
+@mixin text-base {
+	font-family: 'RF Dewi Condensed', sans-serif;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.64);
+}
+
+// Классы заголовков
+.h1 {
+	@include heading-base;
+	font-size: 44px;
+	line-height: 46px;
+	letter-spacing: -1.5px;
+	text-transform: uppercase;
+	text-align: left;
+
+	@media (max-width: 768px) {
+		font-size: 26px;
+		line-height: 28px;
+	}
+}
+
+.h2 {
+	@include heading-base;
+	font-size: 24px;
+	line-height: 26px;
+	letter-spacing: -0.1px;
+	text-align: left;
+
+	@media (max-width: 768px) {
+		font-size: 16px;
+		line-height: 18px;
+		letter-spacing: -0.09px;
+	}
+}
+
+.h3 {
+	@include heading-base;
+	font-size: 12px;
+	line-height: 13px;
+	letter-spacing: -0.1px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+// Классы текста
+.text {
+	@include text-base;
+	font-size: 24px;
+	line-height: 26px;
+	letter-spacing: -0.1px;
+	text-align: left;
+
+	@media (max-width: 768px) {
+		font-size: 18px;
+		line-height: 20px;
+	}
+}
+
+.text-2 {
+	@include text-base;
+	font-size: 16px;
+	line-height: 17px;
+	letter-spacing: -0.1px;
+	text-align: left;
+
+	@media (max-width: 768px) {
+		font-size: 14px;
+		line-height: 16px;
+	}
+}

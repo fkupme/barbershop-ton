@@ -1,0 +1,40 @@
+// Переменные для сайта Force Moscow
+
+// Основные цвета
+$color-dark: #1a1c1d; // Темный фон или текст (почти черный)
+$color-text-secondary: #aaaebc; // Серый для второстепенного текста
+$color-white: #fff; // Белый
+$color-light-gray: #f9f9f9; // Чуть темнее белого (для фонов)
+
+// Системные цвета
+$color-error: #e53935;
+$color-success: #43a047;
+
+// Отступы для разметки
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Контейнер
+$container-width: 1200px;
+
+// Медиа-брейкпоинты (совпадают со стандартными Quasar)
+$breakpoint-xs: 599px;
+$breakpoint-sm: 1023px;
+$breakpoint-md: 1439px;
+$breakpoint-lg: 1919px;
+$breakpoint-xl: 1200px;
+
+// Удалены переменные для размеров, отступов, радиусов, теней, медиа-запросов (кроме брейкпоинтов, если они нужны отдельно от Quasar)
+// Удалены переменные для анимаций и z-индексов (будем полагаться на Quasar или CSS по умолчанию)
+
+// Медиа-запросы (оставляем, если нужны для кастомной логики вне Quasar компонентов)
+
+// Z-индексы (оставляем, если нужны для кастомной логики)
+$z-index-dropdown: 100;
+$z-index-sticky: 200;
+$z-index-fixed: 300;
+$z-index-modal: 400;
+$z-index-popover: 500;
+$z-index-tooltip: 600;
