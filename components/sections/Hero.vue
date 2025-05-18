@@ -3,7 +3,7 @@
 		<div class="hero-content q-px-md">
 			<div class="hero-text q-mb-lg">
 				<h1 class="hero-title q-mb-sm">
-					Барбершопы<br />
+					Барбершоп<br />
 					TON
 				</h1>
 				<div class="hero-subtitle q-mb-md">МЕСТО СТИЛЯ</div>
@@ -91,7 +91,7 @@ const heroImages = ref([
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	text-align: center; // Центрирование текста в мобильной версии
+	text-align: left;
 
 	@media (min-width: 740px) {
 		width: 48%;
@@ -124,8 +124,8 @@ const heroImages = ref([
 
 	p {
 		color: var(--color-dark);
-		line-height: 1.4;
-		font-size: 1.2rem;
+			font-size: 1.4rem;
+			line-height: 1.2;
 	}
 }
 

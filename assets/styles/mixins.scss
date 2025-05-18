@@ -1,14 +1,13 @@
 @mixin animated-menu-item-borders {
-	// Styles for the links within the menu
 	a {
 		position: relative;
-		display: block; // From original .menu a
-		padding: 10px; // From original .menu a, adjust if necessary
+		display: block;
+		padding: 10px;
 
 		.border {
 			position: absolute;
 			left: 0;
-			background: currentColor; // Uses the color of the 'a' tag
+			background: currentColor;
 			transition: transform 0.3s ease-in-out;
 		}
 
@@ -26,7 +25,6 @@
 			transform: scaleY(0);
 		}
 
-		// Default positioning and transform origins
 		.border-top {
 			top: 0;
 			transform-origin: top left;
@@ -34,7 +32,8 @@
 		.border-right {
 			top: 0;
 			right: 0;
-			transform-origin: top right;
+			left: auto;
+			transform-origin: top center;
 		}
 		.border-bottom {
 			bottom: 0;
@@ -45,7 +44,6 @@
 			transform-origin: bottom left;
 		}
 
-		// Hover effect for standard animation
 		&:hover {
 			background-color: transparent !important;
 			.border-top,
@@ -58,7 +56,6 @@
 				transform: scaleY(1);
 			}
 
-			// Specific delays for the standard animation sequence
 			.border-top {
 				transition-delay: 0s;
 			}
@@ -74,25 +71,18 @@
 		}
 	}
 
-	// Styles for the "diagonal" animation variant
-	// These apply if the element where the mixin is included (e.g., .menu)
-	// has the attribute data-animation="diagonal"
 	&[data-animation='diagonal'] {
 		a {
-			// Override transform origins for diagonal animation
 			.border-left {
 				transform-origin: top left;
 			}
 			.border-right {
 				transform-origin: bottom right;
+				right: 0;
+				left: auto;
 			}
-			// .border-bottom transform-origin remains bottom right (same as default and original CSS for diagonal)
-			// .border-top transform-origin remains top left (default)
-
-			// Override transition delays for diagonal animation (all borders animate together)
 			&:hover {
 				[class^='border'] {
-					// Targets all .border, .border-top, .border-right, etc.
 					transition-delay: 0s;
 				}
 			}

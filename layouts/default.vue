@@ -3,7 +3,9 @@
 		<q-header class="header bg-white text-black" bordered>
 			<q-toolbar class="q-mx-auto q-px-md" style="max-width: 1200px">
 				<q-toolbar-title>
-					<div class="logo">{TON}</div>
+					<div class="logo">
+						<img src="~/assets/TON.svg" alt="TON Logo" class="logo-img" />
+					</div>
 				</q-toolbar-title>
 
 				<nav class="desktop-nav q-mr-md">
@@ -126,9 +128,15 @@ const drawer = ref(false);
 	}
 
 	.logo {
-		font-family: "RF Dewi Extended", sans-serif;
-		font-weight: 700;
-		font-size: 1.5rem;
+		// font-family: "RF Dewi Extended", sans-serif; // Убираем стили для текста
+		// font-weight: 700;
+		// font-size: 1.5rem;
+
+		.logo-img {
+			height: 40px; // Задаем высоту логотипа
+			width: auto; // Ширина будет пропорциональна
+			vertical-align: middle;
+		}
 	}
 
 	.desktop-nav {
@@ -139,6 +147,27 @@ const drawer = ref(false);
 			// margin-right: $spacing-md; - удалено
 		}
 		@include animated-menu-item-borders;
+
+		// Убираем дефолтные ховеры у кнопок Quasar
+		.q-btn {
+			&:before {
+				display: none; // Убираем ripple-эффект при наведении
+			}
+
+			&:hover {
+				background: transparent !important; // Убираем фоновую подсветку при наведении
+			}
+
+			.q-focus-helper {
+				display: none !important; // Убираем фокусный хелпер
+			}
+
+			// Убираем переходы для фона при наведении
+			transition: none !important;
+			&:after {
+				transition: none !important;
+			}
+		}
 	}
 
 	.online-btn {

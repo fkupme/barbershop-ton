@@ -83,3 +83,11 @@ body.body--light {
 		font-weight: 500;
 	}
 }
+
+.seo-hidden {
+	display: none;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	border-radius: 100%;
+}

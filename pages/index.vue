@@ -1,11 +1,10 @@
 <template>
 	<div>
-		<HeroSection />
+		<SectionHero />
 		<q-separator />
-		
+		<SectionMarquee />
 	</div>
 </template>
 
 <script setup>
-import HeroSection from "~/components/sections/HeroSection.vue";
 </script> 
