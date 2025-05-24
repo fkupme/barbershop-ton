@@ -3,14 +3,14 @@
 		<div class="hero-content q-px-md">
 			<div class="hero-text q-mb-lg">
 				<h1 class="hero-title q-mb-sm">
-					Барбершоп<br />
-					TON
+					TON<br />
+					Барбершоп
 				</h1>
 				<div class="hero-subtitle q-mb-md">МЕСТО СТИЛЯ</div>
 
 				<div class="hero-description q-mb-lg">
 					<p class="q-mb-sm">
-						ton moscow – это про внутреннюю силу человека.<br />
+						ton – это про внутреннюю силу человека.<br />
 						про силу команды, дружбы и профессионализма.
 					</p>
 					<p class="q-mb-sm">

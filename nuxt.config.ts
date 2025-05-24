@@ -80,12 +80,12 @@ export default defineNuxtConfig({
 	// Настройки приложения
 	app: {
 		head: {
-			title: 'МУЖСКИЕ ПАРИКМАХЕРСКИЕ FORCE',
+			title: 'МУЖСКИЕ ПАРИКМАХЕРСКИЕ TON',
 			meta: [
 				{
 					name: 'description',
 					content:
-						'Мужская парикмахерская FORCE MOSCOW — место силы для настоящих мужчин',
+						'Мужская парикмахерская TON — место силы для настоящих мужчин',
 				},
 			],
 			link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }],

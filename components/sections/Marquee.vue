@@ -31,6 +31,12 @@
 						<div class="marquee-item">
 							СИЛА ВНУТРИ ⇔ СИЛА СНАРУЖИ ⇔ СИЛА ВНУТРИ ⇔ СИЛА СНАРУЖИ ⇔
 						</div>
+						<div class="marquee-item">
+							СИЛА ВНУТРИ ⇔ СИЛА СНАРУЖИ ⇔ СИЛА ВНУТРИ ⇔ СИЛА СНАРУЖИ ⇔
+						</div>
+						<div class="marquee-item">
+							СИЛА ВНУТРИ ⇔ СИЛА СНАРУЖИ ⇔ СИЛА ВНУТРИ ⇔ СИЛА СНАРУЖИ ⇔
+						</div>
 					</div>
 				</div>
 				<!-- Описание -->
@@ -113,7 +119,7 @@ const marqueeImages = ref([
 .marquee-content {
 	display: flex;
 	white-space: nowrap;
-	animation: marquee 25s linear infinite;
+	animation: marquee 10s linear infinite;
 }
 
 @keyframes marquee {

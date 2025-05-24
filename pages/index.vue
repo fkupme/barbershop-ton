@@ -3,6 +3,8 @@
 		<SectionHero />
 		<q-separator />
 		<SectionMarquee />
+		<q-separator />
+		<SectionServices />
 	</div>
 </template>
 
