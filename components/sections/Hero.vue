@@ -25,12 +25,10 @@
 					</p>
 				</div>
 
-				<q-btn
-					color="black"
-					class="hero-btn q-py-sm q-px-lg"
-					rounded
+				<UIMainButton
 					label="ОНЛАЙН-ЗАПИСЬ"
 					size="lg"
+					custom-class="hero-btn q-py-sm q-px-lg"
 					@click="bookingStore.openBooking()"
 				/>
 			</div>
@@ -68,7 +66,7 @@ const heroImages = ref([
 ]);
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .hero-section {
 	background-color: var(--color-white);
 	min-height: calc(100vh - 120px); // Примерная высота хедера и футера
@@ -134,26 +132,11 @@ const heroImages = ref([
 }
 
 .hero-btn {
-	font-family: "RF Dewi Extended", sans-serif;
-	font-weight: 600;
-	text-transform: uppercase;
 	font-size: 1.1rem;
-	align-self: center; // Центрируем кнопку в мобильной версии
-	transition: all 0.3s ease;
-	border: 2px solid var(--color-black);
-
-	&:hover {
-		background: var(--color-white) !important;
-		color: var(--color-black) !important;
-		border-color: var(--color-black);
-	}
-
-	&:active {
-		transform: scale(0.98);
-	}
+	align-self: center;
 
 	@media (min-width: 740px) {
-		align-self: flex-start; // На десктопе кнопка слева
+		align-self: flex-start;
 	}
 }
 

@@ -178,7 +178,7 @@ defineExpose({
 		width: 100% !important;
 		height: auto !important;
 		object-fit: cover !important;
-		border-radius: 8px !important;
+		border-radius: 0 !important;
 		display: block !important;
 		max-height: 70vh;
 	}

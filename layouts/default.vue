@@ -39,11 +39,9 @@
 					</q-btn>
 				</nav>
 
-				<q-btn
-					color="black"
-					rounded
-					class="online-btn"
+				<UIMainButton
 					label="ОНЛАЙН-ЗАПИСЬ"
+					custom-class="online-btn"
 					@click="bookingStore.openBooking()"
 				/>
 
@@ -73,11 +71,9 @@
 				</q-item>
 				<q-item clickable v-close-popup class="q-pa-md">
 					<q-item-section>
-						<q-btn
-							color="black"
-							rounded
-							class="full-width"
+						<UIMainButton
 							label="ОНЛАЙН-ЗАПИСЬ"
+							custom-class="full-width online-btn"
 							@click="bookingStore.openBooking()"
 						/>
 					</q-item-section>
@@ -128,7 +124,7 @@ const drawer = ref(false);
 const bookingStore = useBookingStore();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "~/assets/styles/variables" as *;
 @use "~/assets/styles/mixins" as *;
 
@@ -183,22 +179,6 @@ const bookingStore = useBookingStore();
 	}
 
 	.online-btn {
-		font-family: "RF Dewi Extended", sans-serif;
-		font-weight: 600;
-		text-transform: uppercase;
-		transition: all 0.3s ease;
-		border: 2px solid var(--color-black);
-
-		&:hover {
-			background: var(--color-white) !important;
-			color: var(--color-black) !important;
-			border-color: var(--color-black);
-		}
-
-		&:active {
-			transform: scale(0.98);
-		}
-
 		@media (max-width: 740px) {
 			display: none;
 		}
@@ -248,27 +228,34 @@ const bookingStore = useBookingStore();
 	}
 }
 
-// Глобальные стили для блюра дровера и диалогов
-.q-drawer__backdrop {
-	backdrop-filter: blur(8px);
-	background: rgba(0, 0, 0, 0.3) !important;
-	transition: all 0.3s ease;
+// Стили для блюра только для правого дровера (booking)
+.q-layout .booking-drawer.q-drawer--overlay .q-drawer__backdrop,
+.booking-drawer.q-drawer--overlay .q-drawer__backdrop {
+	backdrop-filter: blur(8px) !important;
+	background: rgba(0, 0, 0, 0.4) !important;
+	transition: all 0.3s ease !important;
 }
 
-.q-dialog__backdrop {
-	backdrop-filter: blur(8px);
-	background: rgba(0, 0, 0, 0.3) !important;
-	transition: all 0.3s ease;
+// Блюр контента при открытии правого дровера - более специфичный селектор
+.q-layout.q-layout--drawer-right-open .q-page-container,
+.q-layout.q-layout--drawer-right-open .q-header,
+.q-layout.q-layout--drawer-right-open .q-footer {
+	filter: blur(2px) !important;
+	transition: filter 0.3s ease !important;
 }
 
-// Дополнительный блюр для контента под дровером
-.q-layout--drawer-right-open .q-page-container {
-	filter: blur(2px);
-	transition: filter 0.3s ease;
+// Стили для bottom sheet диалогов (мобильная версия)
+.booking-bottom-sheet.q-dialog .q-dialog__backdrop,
+.booking-bottom-sheet .q-dialog__backdrop {
+	backdrop-filter: blur(8px) !important;
+	background: rgba(0, 0, 0, 0.4) !important;
+	transition: all 0.3s ease !important;
 }
 
-.q-layout:not(.q-layout--drawer-right-open) .q-page-container {
-	filter: none;
-	transition: filter 0.3s ease;
+// Убираем блюр для левого дровера (навигация) - более специфичный селектор
+.q-layout .mobile-nav.q-drawer--overlay .q-drawer__backdrop,
+.mobile-nav.q-drawer--overlay .q-drawer__backdrop {
+	backdrop-filter: none !important;
+	background: rgba(0, 0, 0, 0.5) !important;
 }
 </style> 
