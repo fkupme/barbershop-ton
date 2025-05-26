@@ -29,7 +29,7 @@
 					:group-name="group.name"
 					:services="group.services"
 					:compact-mode="true"
-					:preview-count="4"
+					:preview-count="previewCount"
 				/>
 			</transition-group>
 			<!-- Отображение результатов поиска -->
@@ -44,7 +44,7 @@
 						tag="div"
 						class="services-grid"
 					>
-						<UIPriceCard
+						<ServicesPriceCard
 							v-for="service in servicesStore.searchServices"
 							:key="service.id"
 							:number="service.id"
@@ -65,10 +65,25 @@
 </template>
 
 <script setup>
+import { useWindowSize } from "@vueuse/core";
+
 // Импортируем компонент группы
 const ServicesGroup = defineAsyncComponent(() =>
-	import("~/components/sections/ServicesGroup.vue")
+	import("~/components/service/Group.vue")
 );
+
+const { width } = useWindowSize();
+
+// Адаптивное количество превью карточек
+const previewCount = computed(() => {
+	if (width.value < 768) {
+		return 2;
+	} else if (width.value < 1024) {
+		return 3;
+	} else {
+		return 4;
+	}
+});
 
 // Используем стор с услугами
 const servicesStore = useServicesStore();

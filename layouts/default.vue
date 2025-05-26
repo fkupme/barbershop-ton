@@ -39,7 +39,13 @@
 					</q-btn>
 				</nav>
 
-				<q-btn color="black" rounded class="online-btn" label="ОНЛАЙН-ЗАПИСЬ" />
+				<q-btn
+					color="black"
+					rounded
+					class="online-btn"
+					label="ОНЛАЙН-ЗАПИСЬ"
+					@click="bookingStore.openBooking()"
+				/>
 
 				<q-btn
 					dense
@@ -72,6 +78,7 @@
 							rounded
 							class="full-width"
 							label="ОНЛАЙН-ЗАПИСЬ"
+							@click="bookingStore.openBooking()"
 						/>
 					</q-item-section>
 				</q-item>
@@ -94,6 +101,9 @@
 			<slot />
 		</q-page-container>
 
+		<!-- Компонент для записи -->
+		<UIBookingDrawer />
+
 		<q-footer class="bg-white text-black" bordered>
 			<q-toolbar>
 				<q-toolbar-title>
@@ -111,9 +121,11 @@
 </template>
 
 <script setup>
+import { useBookingStore } from "@/stores/booking";
 import { ref } from "vue";
 
 const drawer = ref(false);
+const bookingStore = useBookingStore();
 </script>
 
 <style lang="scss">
@@ -171,6 +183,22 @@ const drawer = ref(false);
 	}
 
 	.online-btn {
+		font-family: "RF Dewi Extended", sans-serif;
+		font-weight: 600;
+		text-transform: uppercase;
+		transition: all 0.3s ease;
+		border: 2px solid var(--color-black);
+
+		&:hover {
+			background: var(--color-white) !important;
+			color: var(--color-black) !important;
+			border-color: var(--color-black);
+		}
+
+		&:active {
+			transform: scale(0.98);
+		}
+
 		@media (max-width: 740px) {
 			display: none;
 		}
@@ -218,5 +246,29 @@ const drawer = ref(false);
 			display: flex;
 		}
 	}
+}
+
+// Глобальные стили для блюра дровера и диалогов
+.q-drawer__backdrop {
+	backdrop-filter: blur(8px);
+	background: rgba(0, 0, 0, 0.3) !important;
+	transition: all 0.3s ease;
+}
+
+.q-dialog__backdrop {
+	backdrop-filter: blur(8px);
+	background: rgba(0, 0, 0, 0.3) !important;
+	transition: all 0.3s ease;
+}
+
+// Дополнительный блюр для контента под дровером
+.q-layout--drawer-right-open .q-page-container {
+	filter: blur(2px);
+	transition: filter 0.3s ease;
+}
+
+.q-layout:not(.q-layout--drawer-right-open) .q-page-container {
+	filter: none;
+	transition: filter 0.3s ease;
 }
 </style> 

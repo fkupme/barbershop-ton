@@ -5,6 +5,8 @@
 		<SectionMarquee />
 		<q-separator />
 		<SectionServices />
+		<q-separator />
+		<SectionProducts />
 	</div>
 </template>
 

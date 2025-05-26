@@ -12,6 +12,16 @@ export default defineNuxtConfig({
 			pathPrefix: false,
 			prefix: 'Section',
 		},
+		{
+			path: '~/components/service',
+			pathPrefix: false,
+			prefix: 'Services',
+		},
+		{
+			path: '~/components/product',
+			pathPrefix: false,
+			prefix: 'Product',
+		},
 	],
 
 	modules: [
@@ -89,6 +99,14 @@ export default defineNuxtConfig({
 				},
 			],
 			link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
+		},
+	},
+	runtimeConfig: {
+		public: {
+			publicKey: process.env.PUBLIC_KEY,
+			secretKey: process.env.SECRET_KEY,
+			apiUrl: process.env.API_URL,
+			yClientsUrl: process.env.YCLIENTS_URL,
 		},
 	},
 });

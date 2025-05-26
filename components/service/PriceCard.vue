@@ -11,21 +11,34 @@
 			<h3 class="price-card__title">{{ title }}</h3>
 		</q-card-section>
 		<q-card-section class="price-card__content">
-			<div class="price-card__prices" v-if="prices && prices.length">
-				<span
-					v-for="(price, index) in prices"
-					:key="index"
-					class="price-card__price"
-				>
+			<div class="price-card__info">
+				<div class="price-card__prices" v-if="prices && prices.length">
+					<span
+						v-for="(price, index) in prices"
+						:key="index"
+						class="price-card__price"
+					>
+						{{ formatPrice(price) }}
+					</span>
+				</div>
+				<div class="price-card__single-price" v-else-if="price">
 					{{ formatPrice(price) }}
-				</span>
+				</div>
+				<p class="price-card__description" v-if="description">
+					{{ description }}
+				</p>
 			</div>
-			<div class="price-card__single-price" v-else-if="price">
-				{{ formatPrice(price) }}
+			<div v-if="isSelected" class="price-card__button">
+				<q-btn
+					label="записаться"
+					no-caps
+					flat
+					unelevated
+					class="price-card__button-btn"
+					@click.stop="handleBookingClick"
+					:icon="'event'"
+				/>
 			</div>
-			<p class="price-card__description" v-if="description">
-				{{ description }}
-			</p>
 		</q-card-section>
 		<!-- Анимированные границы -->
 		<span class="border border-top"></span>
@@ -36,8 +49,9 @@
 </template>
 
 <script setup>
-import { useServicesStore } from "@/stores/services"
-import { computed } from "vue"
+import { useBookingStore } from "@/stores/booking";
+import { useServicesStore } from "@/stores/services";
+import { computed } from "vue";
 
 const props = defineProps({
 	title: {
@@ -70,6 +84,7 @@ const props = defineProps({
 });
 
 const servicesStore = useServicesStore();
+const bookingStore = useBookingStore();
 
 const numberFormatted = computed(() => {
 	return props.number.toString().padStart(2, "0");
@@ -87,11 +102,20 @@ const isSelected = computed(() => {
 });
 
 const handleCardClick = () => {
-	if (isSelected.value) {
-		servicesStore.clearSelection();
-	} else {
+	if (!isSelected.value) {
 		servicesStore.selectService(props.number);
 	}
+};
+
+const handleBookingClick = () => {
+	const serviceData = {
+		number: props.number,
+		title: props.title,
+		description: props.description,
+		price: props.price,
+		prices: props.prices,
+	};
+	bookingStore.openBooking(serviceData);
 };
 </script>
 
@@ -113,6 +137,11 @@ const handleCardClick = () => {
 	&:hover {
 		border-color: var(--color-black);
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	}
+
+	&.selected {
+		border-color: var(--color-black);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 	}
 
 	&__header {
@@ -149,6 +178,30 @@ const handleCardClick = () => {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+	}
+
+	&__info {
+		flex: 1;
+	}
+
+	&__button {
+		margin-top: 1rem;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__button-btn {
+		background: var(--color-black);
+		color: var(--color-white);
+		padding: 0.75rem 1.5rem;
+		font-family: "RF Dewi Extended", sans-serif;
+		font-weight: 600;
+		text-transform: uppercase;
+		border-radius: 0;
+
+		&:hover {
+			background: var(--color-dark);
+		}
 	}
 
 	&__prices {

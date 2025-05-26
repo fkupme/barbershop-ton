@@ -24,7 +24,7 @@
 			>
 				<transition-group name="services-card" tag="div" class="services-grid">
 					<component
-						:is="isCompactMode ? UIPriceCardCompact : UIPriceCard"
+						:is="isCompactMode ? ServicesPriceCardCompact : ServicesPriceCard"
 						v-for="service in displayedServices"
 						:key="service.id"
 						:number="service.id"
@@ -41,11 +41,11 @@
 
 <script setup>
 // Импортируем компоненты
-const UIPriceCard = defineAsyncComponent(() =>
-	import("~/components/UI/PriceCard.vue")
+const ServicesPriceCard = defineAsyncComponent(() =>
+	import("~/components/service/PriceCard.vue")
 );
-const UIPriceCardCompact = defineAsyncComponent(() =>
-	import("~/components/UI/PriceCardCompact.vue")
+const ServicesPriceCardCompact = defineAsyncComponent(() =>
+	import("~/components/service/PriceCardCompact.vue")
 );
 
 const props = defineProps({
@@ -96,7 +96,7 @@ const toggleExpanded = () => {
 
 <style lang="scss" scoped>
 .services-group {
-	margin-bottom: 3rem;
+	margin-bottom: 1.5rem;
 
 	&__header {
 		display: flex;
@@ -116,14 +116,15 @@ const toggleExpanded = () => {
 		font-size: 1.75rem;
 		text-transform: uppercase;
 		color: var(--color-black);
-		margin: 0 0 1.5rem 0;
+		margin: 0 0 0.3rem 0;
 		line-height: 1.2;
 
 		@media (min-width: 768px) {
-			font-size: 2rem;
+			font-size: 1.7rem;
 		}
 		@media (max-width: 479px) {
-			font-size: 1.5rem;
+			font-size: 1.2rem;
+			margin-bottom: 0.3rem;
 		}
 	}
 
@@ -131,7 +132,10 @@ const toggleExpanded = () => {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		margin-bottom: 1.5rem;
+		margin-bottom: 0.3rem;
+		@media (max-width: 479px) {
+			margin-bottom: 0.3rem;
+		}
 	}
 
 	&__count {
@@ -158,7 +162,7 @@ const toggleExpanded = () => {
 		width: 100%;
 		height: 2px;
 		background-color: var(--color-light-gray);
-		margin-bottom: 2rem;
+		margin-bottom: 1.5rem;
 	}
 
 	&__content {

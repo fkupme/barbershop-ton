@@ -31,6 +31,7 @@
 					rounded
 					label="ОНЛАЙН-ЗАПИСЬ"
 					size="lg"
+					@click="bookingStore.openBooking()"
 				/>
 			</div>
 
@@ -49,11 +50,14 @@
 </template>
 
 <script setup>
+import { useBookingStore } from "@/stores/booking";
 import { ref } from "vue";
 import hero1ImageURL from "~/assets/images/hero-1.webp"; // Импортируем изображение
 import hero2ImageURL from "~/assets/images/hero-2.webp"; // Импортируем изображение
 import hero3ImageURL from "~/assets/images/hero-3.webp"; // Импортируем изображение
 import heroImageURL from "~/assets/images/hero.webp"; // Импортируем изображение
+
+const bookingStore = useBookingStore();
 
 // Создаем массив из одной картинки с разными URL для теста карусели
 const heroImages = ref([
@@ -124,14 +128,29 @@ const heroImages = ref([
 
 	p {
 		color: var(--color-dark);
-			font-size: 1.4rem;
-			line-height: 1.2;
+		font-size: 1.4rem;
+		line-height: 1.2;
 	}
 }
 
 .hero-btn {
+	font-family: "RF Dewi Extended", sans-serif;
+	font-weight: 600;
+	text-transform: uppercase;
 	font-size: 1.1rem;
 	align-self: center; // Центрируем кнопку в мобильной версии
+	transition: all 0.3s ease;
+	border: 2px solid var(--color-black);
+
+	&:hover {
+		background: var(--color-white) !important;
+		color: var(--color-black) !important;
+		border-color: var(--color-black);
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
 
 	@media (min-width: 740px) {
 		align-self: flex-start; // На десктопе кнопка слева
