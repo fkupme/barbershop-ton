@@ -1,5 +1,5 @@
 <template>
-	<q-layout view="hHh LpR fFf">
+	<q-layout class="layout-blur" :class="{ 'layout-blur_active': isActive }" view="hHh LpR fFf">
 		<q-header class="header bg-white text-black" bordered>
 			<q-toolbar class="q-mx-auto q-px-md" style="max-width: 1200px">
 				<q-toolbar-title>
@@ -122,13 +122,33 @@ import { ref } from "vue";
 
 const drawer = ref(false);
 const bookingStore = useBookingStore();
+const isActive = computed(() => bookingStore.isBookingOpen);
 </script>
 
 <style lang="scss" scoped>
 @use "~/assets/styles/variables" as *;
 @use "~/assets/styles/mixins" as *;
-
+.layout-blur {
+		&::before {
+			opacity: 0;
+			content: "";
+			position: absolute;
+			inset: 0 0 0 0;
+			background: rgba(0, 0, 0, 0.4);
+			backdrop-filter: blur(8px);
+			z-index: 0;
+			transition: opacity 0.3s ease;
+		}
+		&_active {
+			&::before {
+				z-index: 2000;
+				opacity: 1;
+				transition: opacity 0.3s ease;
+			}
+		}
+	}
 .header {
+	
 	.q-toolbar {
 		// max-width: $container-width; - удалено
 		// margin: 0 auto; - удалено
