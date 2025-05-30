@@ -15,6 +15,7 @@
 			:error="!!error"
 			:error-message="error"
 			:class="inputClass"
+			:autocomplete="autocomplete"
 			@update:model-value="onInput"
 			@blur="$emit('blur')"
 			@focus="$emit('focus')"
@@ -46,6 +47,10 @@ const props = defineProps({
 		default: "text",
 	},
 	placeholder: {
+		type: String,
+		default: "",
+	},
+	autocomplete: {
 		type: String,
 		default: "",
 	},
@@ -101,6 +106,7 @@ const onInput = (value) => {
 
 <style lang="scss">
 .base-input {
+	border-radius: 0;
 	&__label {
 		display: block;
 		font-family: "RF Dewi Condensed", sans-serif;

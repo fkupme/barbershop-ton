@@ -23,7 +23,7 @@
 					class="products-swiper"
 				>
 					<swiper-slide
-						v-for="product in productsStore.popularProducts"
+						v-for="product in productsStore.activeProducts"
 						:key="product.id"
 						class="products-slide"
 					>
@@ -31,7 +31,8 @@
 							:id="product.id"
 							:title="product.title"
 							:description="product.description"
-							:image="product.image"
+							:image="product.image_url || product.image"
+							:price="product.price"
 						/>
 					</swiper-slide>
 				</swiper-container>
@@ -42,6 +43,7 @@
 
 <script setup>
 import { useWindowSize } from "@vueuse/core";
+import { defineAsyncComponent, onMounted } from "vue";
 
 // Импортируем компонент карточки товара
 const ProductCard = defineAsyncComponent(() =>
@@ -52,6 +54,11 @@ const { width } = useWindowSize();
 
 // Используем стор с товарами
 const productsStore = useProductsStore();
+
+// Загружаем данные при монтировании
+onMounted(async () => {
+	await productsStore.fetchProducts();
+});
 
 // Адаптивные настройки свайпера
 const slidesPerView = computed(() => {

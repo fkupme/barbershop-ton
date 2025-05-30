@@ -3,6 +3,11 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	components: [
 		{
+			path: '~/components/admin',
+			pathPrefix: false,
+			prefix: 'Admin',
+		},
+		{
 			path: '~/components/UI',
 			pathPrefix: false,
 			prefix: 'UI',
@@ -107,6 +112,9 @@ export default defineNuxtConfig({
 			secretKey: process.env.SECRET_KEY,
 			apiUrl: process.env.API_URL,
 			yClientsUrl: process.env.YCLIENTS_URL,
+		},
+		private: {
+			jwtSecret: process.env.JWT_SECRET,
 		},
 	},
 });

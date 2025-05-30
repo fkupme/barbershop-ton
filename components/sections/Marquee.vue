@@ -8,6 +8,7 @@
 			<!-- Изображения (первые на мобильных, слева на десктопе) -->
 			<div class="marquee-image-wrapper">
 				<UIBaseCarousel
+					v-if="marqueeImages.length > 0"
 					:slides-per-view="1"
 					:space-between="0"
 					:loop="true"
@@ -15,6 +16,12 @@
 					custom-class="marquee-carousel"
 					:image-sources="marqueeImages"
 				/>
+				<div v-else-if="marqueeStore.loading" class="marquee-loading">
+					Загрузка изображений...
+				</div>
+				<div v-else class="marquee-fallback">
+					<img src="~/assets/images/hero.webp" alt="TON Барбершоп философия" />
+				</div>
 			</div>
 
 			<!-- Текст (второй на мобильных, справа на десктопе) -->
@@ -52,19 +59,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import hero1ImageURL from "~/assets/images/hero-1.webp";
-import hero2ImageURL from "~/assets/images/hero-2.webp";
-import hero3ImageURL from "~/assets/images/hero-3.webp";
-import heroImageURL from "~/assets/images/hero.webp";
+import { useMarqueeStore } from "@/stores/marquee";
+import { computed, onMounted } from "vue";
 
-// Используем те же изображения, что и в Hero
-const marqueeImages = ref([
-	heroImageURL,
-	hero1ImageURL,
-	hero2ImageURL,
-	hero3ImageURL,
-]);
+const marqueeStore = useMarqueeStore();
+
+// Получаем изображения из стора
+const marqueeImages = computed(() =>
+	marqueeStore.activeImages.map((img) => img.image_url)
+);
+
+// Загружаем данные при монтировании
+onMounted(async () => {
+	await marqueeStore.fetchImages();
+});
 </script>
 
 <style lang="scss">
@@ -216,5 +224,31 @@ const marqueeImages = ref([
 	width: 100%;
 	margin: 0 auto;
 	height: auto;
+}
+
+.marquee-loading,
+.marquee-fallback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 300px;
+	background-color: var(--color-light-gray, #f5f5f5);
+	border-radius: 8px;
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: cover;
+		border-radius: 8px;
+	}
+}
+
+.marquee-loading {
+	font-family: "RF Dewi Condensed", sans-serif;
+	font-size: 1rem;
+	color: var(--color-gray, #999);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 }
 </style> 

@@ -66,6 +66,7 @@
 
 <script setup>
 import { useWindowSize } from "@vueuse/core";
+import { defineAsyncComponent, onMounted } from "vue";
 
 // Импортируем компонент группы
 const ServicesGroup = defineAsyncComponent(() =>
@@ -73,6 +74,14 @@ const ServicesGroup = defineAsyncComponent(() =>
 );
 
 const { width } = useWindowSize();
+
+// Используем стор с услугами
+const servicesStore = useServicesStore();
+
+// Загружаем данные при монтировании
+onMounted(async () => {
+	await servicesStore.fetchServices();
+});
 
 // Адаптивное количество превью карточек
 const previewCount = computed(() => {
@@ -84,9 +93,6 @@ const previewCount = computed(() => {
 		return 4;
 	}
 });
-
-// Используем стор с услугами
-const servicesStore = useServicesStore();
 
 // Проверяем есть ли активные фильтры
 const hasActiveFilters = computed(() => {

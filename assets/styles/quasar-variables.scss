@@ -31,3 +31,47 @@ $button-dense-padding: 4px 12px !default;
 $shadow-1: 0 2px 8px rgba(0, 0, 0, 0.05) !default;
 $shadow-2: 0 4px 12px rgba(0, 0, 0, 0.1) !default;
 $shadow-3: 0 8px 24px rgba(0, 0, 0, 0.12) !default;
+
+// Убираем блядские стили автокомплита у инпутов
+.q-field input {
+	&::-webkit-credentials-auto-fill-button {
+		display: none !important;
+	}
+
+	&::-webkit-caps-lock-indicator {
+		display: none !important;
+	}
+
+	&::-webkit-autofill,
+	&::-webkit-autofill:hover,
+	&::-webkit-autofill:focus,
+	&::-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0 30px white inset !important;
+		-webkit-text-fill-color: inherit !important;
+		box-shadow: 0 0 0 30px white inset !important;
+		background-color: transparent !important;
+		transition: background-color 5000s ease-in-out 0s !important;
+	}
+}
+
+// Убираем автокомплит для обычных input элементов
+input {
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0 30px white inset !important;
+		-webkit-text-fill-color: inherit !important;
+		box-shadow: 0 0 0 30px white inset !important;
+		background-color: transparent !important;
+		transition: background-color 5000s ease-in-out 0s !important;
+	}
+
+	&::-webkit-credentials-auto-fill-button {
+		display: none !important;
+	}
+
+	&::-webkit-caps-lock-indicator {
+		display: none !important;
+	}
+}

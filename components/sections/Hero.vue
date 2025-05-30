@@ -35,6 +35,7 @@
 
 			<div class="hero-image-wrapper">
 				<UIBaseCarousel
+					v-if="heroImages.length > 0"
 					:slides-per-view="1"
 					:space-between="0"
 					:loop="true"
@@ -42,6 +43,12 @@
 					custom-class="hero-carousel"
 					:image-sources="heroImages"
 				/>
+				<div v-else-if="heroStore.loading" class="hero-loading">
+					Загрузка изображений...
+				</div>
+				<div v-else class="hero-fallback">
+					<img src="~/assets/images/hero.webp" alt="TON Барбершоп" />
+				</div>
 			</div>
 		</div>
 	</section>
@@ -49,21 +56,21 @@
 
 <script setup>
 import { useBookingStore } from "@/stores/booking";
-import { ref } from "vue";
-import hero1ImageURL from "~/assets/images/hero-1.webp"; // Импортируем изображение
-import hero2ImageURL from "~/assets/images/hero-2.webp"; // Импортируем изображение
-import hero3ImageURL from "~/assets/images/hero-3.webp"; // Импортируем изображение
-import heroImageURL from "~/assets/images/hero.webp"; // Импортируем изображение
+import { useHeroStore } from "@/stores/hero";
+import { computed, onMounted } from "vue";
 
 const bookingStore = useBookingStore();
+const heroStore = useHeroStore();
 
-// Создаем массив из одной картинки с разными URL для теста карусели
-const heroImages = ref([
-	heroImageURL,
-	hero1ImageURL,
-	hero2ImageURL,
-	hero3ImageURL,
-]);
+// Получаем изображения из стора
+const heroImages = computed(() =>
+	heroStore.activeImages.map((img) => img.image_url)
+);
+
+// Загружаем данные при монтировании
+onMounted(async () => {
+	await heroStore.fetchImages();
+});
 </script>
 
 <style scoped lang="scss">
@@ -159,5 +166,31 @@ const heroImages = ref([
 	width: 100%;
 	margin: 0 auto;
 	height: auto;
+}
+
+.hero-loading,
+.hero-fallback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 300px;
+	background-color: var(--color-light-gray, #f5f5f5);
+	border-radius: 8px;
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: cover;
+		border-radius: 8px;
+	}
+}
+
+.hero-loading {
+	font-family: "RF Dewi Condensed", sans-serif;
+	font-size: 1rem;
+	color: var(--color-gray, #999);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 }
 </style> 
